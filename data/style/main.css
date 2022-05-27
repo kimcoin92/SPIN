@@ -1,0 +1,389 @@
+/*
+//  ########################################################
+//  #                    사이트 전체                       #
+//  ########################################################
+*/
+
+/* 페이지 전체 */
+html {
+
+    font-size: 28px;
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
+    font-family: 'SF-Pro-Text-Black', sans-serif;
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    /* 가로 스크롤 숨김 */
+    overflow-x: hidden;
+
+}
+
+a {
+
+    /* 링크 밑줄 제거 */
+    text-decoration: none;
+    color: black;
+
+}
+
+/* 비디오 배경 */
+.background-video {
+
+    opacity : 0;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+
+    filter: blur(3px);
+    transform: scale(1.1);
+
+}
+
+
+
+/*
+//  ########################################################
+//  #                    링크 리스트                       #
+//  ########################################################
+*/
+
+
+
+/* 외곽 */
+.global-nav {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 80px;
+    max-width: 100%;
+    margin-top: 1em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    z-index: 1;
+
+}
+
+/* 링크 리스트 */
+.global-nav-links {
+
+    display: flex;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    align-items: center;
+
+    backdrop-filter: blur(20px);
+
+}
+
+/* 로고 (좌측 정렬) */
+.global-nav-links .global-nav-logo {
+
+    margin-left: 2em;
+    margin-right: auto;
+
+}
+
+/* 링크 (우측 정렬) */
+.global-nav-links .global-nav-item {
+
+    font-weight: bold;
+    margin-left: 0;
+    margin-right: 5%;
+
+}
+
+
+
+/*
+//  ########################################################
+//  #                     인트로 섹션                      #
+//  ########################################################
+*/
+
+
+
+#section-0 {
+
+    display: flex;
+    flex-direction: column;
+    
+    margin: 0 auto;
+
+}
+
+/* 인트로 SPIN 문구 */
+#text2 { 
+
+    font-size: 2.5em;
+
+}
+
+/* 인트로 메시지 투명 초기값 */
+#section-0 .message {
+
+    opacity: 0;
+
+}
+
+/* 인트로 첫번째 메시지 */
+#section-0 #box1 {
+
+    margin-left: auto;
+    margin-right: 7em;
+    margin-top: 9em;
+
+}
+
+/* 인트로 두번째 메시지 */
+#section-0 #box2 {
+
+    margin-left: 6em;
+    margin-right: auto;
+    margin-top: 8em;
+    margin-bottom: 5em;
+
+}
+
+
+
+/*
+//  ########################################################
+//  #                   번호 조회 섹션                     #
+//  ########################################################
+*/
+
+
+
+#section-1 {
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    align-items: center;
+    
+}
+
+/* 메시지 영역 전체 */
+#section-1 #box1 {
+
+    opacity: 0;
+    text-align: center;
+    margin-top: 10em;
+
+}
+
+/* 대제목 */
+#section-1 #text1 {
+
+    margin-bottom: 1em;
+    font-size: 2em;
+
+}
+
+/* 소제목 */
+#section-1 #text2 {
+
+    font-size: 1em;
+
+}
+
+/* 추첨일 */
+#section-1 #text3 {
+
+    font-size: 0.7em;
+
+}
+
+/* 당첨 번호 */
+#section-1 .result {
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    margin-top: 2em;
+    font-size: 2em;
+
+}
+
+#section-1 .ball {
+
+    display         : inline-block;
+    border-radius   : 100%;
+    text-align      : center;
+    vertical-align  : middle;
+    color           : #fff;
+    font-weight     : 500;
+
+    width: 60px;
+    height: 60px;
+    line-height: 56px;
+    font-size: 28px;
+
+}
+
+/* 1 ~ 10번 */
+#section-1 #list1 .color1 {
+    
+    background:#fbc400;
+    text-shadow: 0px 0px 3px rgba(73, 57, 0, .8)
+
+}
+
+/* 11번 ~ 20번 */
+#section-1 #list1 .color2 {
+    
+    background:#69c8f2;
+    text-shadow: 0px 0px 3px rgba(0, 49, 70, .8)
+
+}
+
+/* 21번 ~ 30번 */
+#section-1 #list1 .color3 {
+    
+    background:#ff7272;
+    text-shadow: 0px 0px 3px rgba(64, 0, 0, .8)
+
+}
+
+/* 31번 ~ 40번 */
+#section-1 #list1 .color4 {
+    
+    background:#aaa;
+    text-shadow: 0px 0px 3px rgba(61, 61, 61, .8)
+
+}
+
+/* 41번 ~ 45번 */
+#section-1 #list1 .color5 {
+    
+    background:#b0d840;
+    text-shadow: 0px 0px 3px rgba(41, 56, 0, .8)
+
+}
+
+#section-1 .bonus  {
+
+    margin-left  : 1rem;
+    margin-right : 1rem;
+    text-shadow  : 0px 0px 3px rgba(41, 56, 0, .8)
+
+}
+
+
+
+/*
+//  ########################################################
+//  #                   번호 생성 섹션                     #
+//  ########################################################
+*/
+
+
+
+#section-2 {
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    align-items: center;
+    
+}
+
+#section-2 #box1 {
+
+    margin-top: 10em;
+    text-align: center;
+
+}
+
+#section-2 #text1 {
+
+    margin-bottom: 1em;
+    font-size: 2em;
+
+}
+
+#section-2 #text2 {
+
+    font-size: 1em;
+
+}
+
+/* 로또 6/25 번호 생성기 */
+#section-2 #box2 {
+
+    margin-top: 10%;
+    text-align: center;
+
+}
+
+/* 버튼 스타일 */
+.main-Button {
+
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 3px;
+    color: #fff;
+    background: #000;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    padding: 12px 20px;
+    text-align:center;
+    transition-duration: .15s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+
+}
+
+/* 버튼 커서 접촉 시 변화 효과 */
+.main-Button:hover{
+
+    color: #000;
+    background: rgb(255, 255, 255);
+
+}
+
+
+
+/*
+//  ########################################################
+//  #                     문의 섹션                        #
+//  ########################################################
+*/
+
+
+
+#section-3 {
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    align-items: center;
+    
+}
+
+#section-3 #box1 {
+
+    margin-top: 10%;
+    text-align: center;
+
+}

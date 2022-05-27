@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>복권 정보 제공 서비스 - Spin</title>
+
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="./data/style/reset.css">
+    <link rel="stylesheet" href="./data/style/main.css">
+
+</head>
+
+<body>
+
+    <!-- 배경 동영상 -->
+    
+    <video class="background-video" src="./data/media/color-ball.mp4" width="1920" height="1080" autoplay muted loop></video>
+
+    <!-- 메뉴 -->
+    <nav class="global-nav">
+        <div class="global-nav-links">
+
+            <a href="#section-0" class="global-nav-logo" id="global-logo"><img src="./data/media/logo.png"></a>
+            <a href="#section-1" class="global-nav-item" id="global-nav-1">번호 확인</a>
+            <a href="#section-2" class="global-nav-item" id="global-nav-2">번호 생성</a>
+            <a href="#section-3" class="global-nav-item" id="global-nav-3">문의</a>
+
+        </div>
+    </nav>
+
+    <div class="main">
+
+        <!-- 인트로 섹션 -->
+        <section id="section-0" class="time-section">
+
+            <div id="box1" class="message">
+
+                <h1 id="text1">복권 정보 제공 서비스</h1>
+                <h1 id="text2">SPIN</h1>
+
+            </div>
+
+            <div id="box2" class="message">
+
+                <h2 id="text1">
+
+                    로또 6/45<br>
+                    당첨 번호 확인<br>
+                    번호 생성 사이트<br>
+
+                </h2>
+
+            </div>
+            
+        </section>
+
+        <!-- 번호 조회 섹션 -->
+        <section id="section-1" class="scroll-section">
+
+            <div id="box1" class="message">
+
+                <h1 id="text1">로또 6/45</h1>
+                <h2 id="text2"><strong id="">1016회</strong> 당첨결과</h2>
+                <p  id="text3">(2022년 05월 21일 추첨)</h2>
+
+                    <div class="result">
+
+                        <p id="list1" class="ball-color">
+
+                            <span class="korea645 ball color2">15</span>
+                            <span class="korea645 ball color3">26</span>
+                            <span class="korea645 ball color3">28</span>
+                            <span class="korea645 ball color4">34</span>
+                            <span class="korea645 ball color5">41</span>
+                            <span class="korea645 ball color5">42</span>
+                            <span class="bonus">+</span>
+                            <span class="korea645 ball color5">44</span>
+
+                        </p>
+
+                    </div>
+
+            </div>
+
+        </section>
+
+        <!-- 번호 생성 섹션 -->
+        <section id="section-2" class="scroll-section">
+
+            <div id="box1" class="message">
+
+                <h1 id="text1">로또 6/45</h1>
+                <h2 id="text2">번호 생성기</h2>
+
+            </div>
+
+            <div id="box2" class="generator">
+            
+                <button id="button-Generate" class="main-Button">생성</button>
+                <div id="number-List"></div>
+            
+            </div>
+
+        </section>
+
+        <!-- 문의 섹션 -->
+        <section id="section-3" class="scroll-section">
+
+            <div id="box1" class="message">
+
+                <h1 id="text-1">문의</h1>
+
+            </div>
+
+        </section>
+        
+    </div>
+
+    <script src="./data/script/main.js"></script>
+</body>
+
+</html>
