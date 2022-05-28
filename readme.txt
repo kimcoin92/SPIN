@@ -1,3 +1,7 @@
+2022년 05월 28일
+- main.js : getBallNumber
+  번호 생성 Spinning 효과 (작업 중)
+
 2022년 05월 27일
 - main.css : html
   스크롤링 효과 변경, 마우스 커서 링크 접촉 시, 텍스트 입력 아이콘으로 출력되는 버그 수정 (EventHandler → scroll-behavior)

@@ -32,11 +32,6 @@
     
     // 메뉴 섹션
 
-    const menuLogo           = document.querySelector('.global-nav-links #global-logo');
-    const menuLink1          = document.querySelector('.global-nav-links #global-nav-1');
-    const menuLink2          = document.querySelector('.global-nav-links #global-nav-2');
-    const menuLink3          = document.querySelector('.global-nav-links #global-nav-3');
-
     let sectionSet = [
 
         // 인트로 섹션
@@ -252,12 +247,15 @@
 
     }
 
-    // 번호 무작위 생성
-    const getLottoNumber = function() {
+    // 생성 버튼을 누르면 1개씩 짧은 시간동안 무작위 번호 출력, 생성버튼이 정지버튼으로 변경
+    // 정지 버튼을 누르면 무작위 번호 정지, 다음 번호 무작위 출력 6번 반복
 
-        let ball      = [];
-        let result    = [];
-        let remainIdx = 44;
+    let ball      = [];
+    let result    = [];
+    let remainIdx = 44;
+
+    // 번호 무작위 생성
+    const getBallNumber = function() {
 
         for (let i = 0; i < 45; i++) {
 
@@ -265,26 +263,32 @@
 
         }
 
-        for (let k = 0; k < 6; k++) {
+        idx = Math.floor(Math.random() * remainIdx)
 
-            idx = Math.floor(Math.random() * remainIdx)
+        result = ball[idx];
 
-            result.push(ball[idx]);
+        // for (let k = 0; k < 6; k++) {
 
-            ball.splice(idx, 1);
-            remainIdx--;
 
-        };
 
-        result.sort(function (a, b) {
+        //     result.push(sectionSet[2].balls[idx]);
 
-            return a - b;
+        //     ball.splice(idx, 1);
+        //     remainIdx--;
 
-        });
+        // };
+
+        // result.sort(function (a, b) {
+
+        //     return a - b;
+
+        // });
 
         return result;
 
     };
+
+
 
     // 인트로 텍스트 등장 효과
     const playIntroOpacity = function() {
@@ -413,30 +417,34 @@
     //  #                    이벤트 핸들러                     #
     //  ########################################################
 
-    
+
 
     const numberItem      = document.createElement('div');
     const numberText      = document.createElement('span');
+    const buttonStop      = document.createElement('button');
     const buttonDelete    = document.createElement('button');
 
     // 생성 버튼
     sectionSet[2].objects.generateElement3_button.addEventListener('click', () => {
 
-        numberText.textContent   = getLottoNumber();
+        numberText.textContent = setInterval(getBallNumber, 100);
 
         sectionSet[2].objects.generateElement4_list.appendChild(numberItem);
         sectionSet[2].objects.generateElement4_list.appendChild(numberText);
 
-        createDelete();
-
-    });
-
-    const createDelete = function() {
+        buttonStop.textContent = '정지';
+        sectionSet[2].objects.generateElement4_list.appendChild(buttonStop);
 
         buttonDelete.textContent = '삭제';
         sectionSet[2].objects.generateElement4_list.appendChild(buttonDelete);
 
-    };
+    });
+
+    buttonStop.addEventListener('click', () => {
+
+        clearInterval(numberText);
+
+    });
 
     const scrollLoop = function() {
 
