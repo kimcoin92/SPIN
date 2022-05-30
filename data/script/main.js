@@ -252,24 +252,32 @@
 
     let ball      = [];
     let result    = [];
+    let idx       = 0;
     let remainIdx = 44;
+    let spinFlag = null;
 
-    // 번호 무작위 생성
-    const getBallNumber = function() {
-
+    const getSpin = function() {
+        
         for (let i = 0; i < 45; i++) {
 
             ball[i] = (i + 1);
 
-        }
+        };
 
-        idx = Math.floor(Math.random() * remainIdx)
+        spinFlag = setInterval(getNumber, 100);
 
-        result = ball[idx];
+    };
+
+    // 번호 무작위 생성
+    const getNumber = function() {
+
+        idx = Math.floor(Math.random() * remainIdx);
+
+        numberText.innerText = ball[idx];
+
+    };
 
         // for (let k = 0; k < 6; k++) {
-
-
 
         //     result.push(sectionSet[2].balls[idx]);
 
@@ -283,11 +291,6 @@
         //     return a - b;
 
         // });
-
-        return result;
-
-    };
-
 
 
     // 인트로 텍스트 등장 효과
@@ -427,10 +430,10 @@
     // 생성 버튼
     sectionSet[2].objects.generateElement3_button.addEventListener('click', () => {
 
-        numberText.textContent = setInterval(getBallNumber, 100);
-
         sectionSet[2].objects.generateElement4_list.appendChild(numberItem);
         sectionSet[2].objects.generateElement4_list.appendChild(numberText);
+
+        getSpin();
 
         buttonStop.textContent = '정지';
         sectionSet[2].objects.generateElement4_list.appendChild(buttonStop);
@@ -442,7 +445,7 @@
 
     buttonStop.addEventListener('click', () => {
 
-        clearInterval(numberText);
+        clearInterval(getNumber);
 
     });
 
