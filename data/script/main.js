@@ -254,7 +254,13 @@
     let result    = [];
     let idx       = 0;
     let remainIdx = 44;
-    let spinFlag = null;
+
+    let spinFlag1 = null;
+    let spinFlag2 = null;
+    let spinFlag3 = null;
+    let spinFlag4 = null;
+    let spinFlag5 = null;
+    let spinFlag6 = null;
 
     const getSpin = function() {
         
@@ -264,16 +270,61 @@
 
         };
 
-        spinFlag = setInterval(getNumber, 100);
+        spinFlag1 = setInterval(getNumber1, 10);
+        spinFlag2 = setInterval(getNumber2, 10);
+        spinFlag3 = setInterval(getNumber3, 10);
+        spinFlag4 = setInterval(getNumber4, 10);
+        spinFlag5 = setInterval(getNumber5, 10);
+        spinFlag6 = setInterval(getNumber6, 10);
 
     };
 
     // 번호 무작위 생성
-    const getNumber = function() {
+    const getNumber1 = function() {
 
         idx = Math.floor(Math.random() * remainIdx);
 
-        numberText.innerText = ball[idx];
+        numberText1.innerText = ball[idx];
+
+    };
+
+    const getNumber2 = function() {
+
+        idx = Math.floor(Math.random() * remainIdx);
+
+        numberText2.innerText = ball[idx];
+
+    };
+
+    const getNumber3 = function() {
+
+        idx = Math.floor(Math.random() * remainIdx);
+
+        numberText3.innerText = ball[idx];
+
+    };
+
+    const getNumber4 = function() {
+
+        idx = Math.floor(Math.random() * remainIdx);
+
+        numberText4.innerText = ball[idx];
+
+    };
+
+    const getNumber5 = function() {
+
+        idx = Math.floor(Math.random() * remainIdx);
+
+        numberText5.innerText = ball[idx];
+
+    };
+
+    const getNumber6 = function() {
+
+        idx = Math.floor(Math.random() * remainIdx);
+
+        numberText6.innerText = ball[idx];
 
     };
 
@@ -423,15 +474,29 @@
 
 
     const numberItem      = document.createElement('div');
-    const numberText      = document.createElement('span');
+    const numberText1     = document.createElement('div');
+    const numberText2     = document.createElement('div');
+    const numberText3     = document.createElement('div');
+    const numberText4     = document.createElement('div');
+    const numberText5     = document.createElement('div');
+    const numberText6     = document.createElement('div');
     const buttonStop      = document.createElement('button');
     const buttonDelete    = document.createElement('button');
+
+    // 생성기능 버튼 스타일
+    
 
     // 생성 버튼
     sectionSet[2].objects.generateElement3_button.addEventListener('click', () => {
 
         sectionSet[2].objects.generateElement4_list.appendChild(numberItem);
-        sectionSet[2].objects.generateElement4_list.appendChild(numberText);
+
+        sectionSet[2].objects.generateElement4_list.appendChild(numberText1);
+        sectionSet[2].objects.generateElement4_list.appendChild(numberText2);
+        sectionSet[2].objects.generateElement4_list.appendChild(numberText3);
+        sectionSet[2].objects.generateElement4_list.appendChild(numberText4);
+        sectionSet[2].objects.generateElement4_list.appendChild(numberText5);
+        sectionSet[2].objects.generateElement4_list.appendChild(numberText6);
 
         getSpin();
 
@@ -445,7 +510,12 @@
 
     buttonStop.addEventListener('click', () => {
 
-        clearInterval(getNumber);
+        clearInterval(spinFlag1);
+        clearInterval(spinFlag2);
+        clearInterval(spinFlag3);
+        clearInterval(spinFlag4);
+        clearInterval(spinFlag5);
+        clearInterval(spinFlag6);
 
     });
 
