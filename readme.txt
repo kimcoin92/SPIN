@@ -1,3 +1,9 @@
+2022년 06월 11일
+- main.css : section-2
+  1019회 당첨 번호 업데이트
+- main.js : getBallNumber
+  번호 생성 기능 재조정 (Spinning 효과 정지작업)
+
 2022년 05월 28일
 - main.js : getBallNumber
   번호 생성 Spinning 효과 (작업 중)
