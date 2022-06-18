@@ -1,15 +1,37 @@
 (() =>
 {
+    // ##############################
+    //             기본
+    // ##############################
+
+    // 윈도우의 가운데를 맞춘 y축 기준 높이
     let yOffset                     = 0
+
+    // 섹션 별 y축 높이
     let sectionYOffset              = 0
+
+    // 현재 섹션의 위치 번호
     let currentSection              = 0
+
+
+
+    // ##############################
+    //     인트로 : 페이드 아웃
+    // ##############################
+
+    // 밝기 조절 인터벌 참조
     let introFadeOutTimer           = null
+
+    // 위치 조절 인터벌 참조
     let introTransTimer             = null
+
     let introTransLength            = 0
     let introTranslateValue1        = 0
     let introTranslateValue2        = 0
     let introOpacityValue           = 0
     let sectionSet = [
+
+        // 인트로
         {
             height           : 0,
             heightMultiply   : 1.5,
@@ -18,9 +40,13 @@
                 container          : document.querySelector('#section-0'),
                 introElement1_text : document.querySelector('#section-0 #box1'),
                 introElement2_text : document.querySelector('#section-0 #box2'),
+
+                // 인트로의 페이드 아웃 효과 참조값을 공유
                 videoElement       : document.querySelector('.background-video')
             }
         },
+
+        // 번호 조회
         {
             height         : 0,
             heightMultiply : 1.5,
@@ -37,6 +63,8 @@
                 resultElement1_TranslateOut  : [0, -10, {start: 0.05, end: 0.15}],
             }
         },
+
+        // 번호 생성
         {
             height         : 0,
             heightMultiply : 1.5,
@@ -58,6 +86,12 @@
                 generateElement3_TranslateOut  : [0, -10, {start: 0.2, end: 0.25}],
                 generateElement4_OpacityOut    : [0, 1, {start: 0.25, end: 0.2}],
                 generateElement4_TranslateOut  : [0, -10, {start: 0.25, end: 0.2}],
+
+                ball            : [],
+                ballIdx         : 44,
+                wonBalls        : [],
+                wonIdx          : 0,
+                leftBall        : 45
             }
         },
         {
@@ -156,29 +190,7 @@
         }
         return result
     }
-    let ball       = []
-    let result     = []
-    let idx        = 0
-    let remainIdx  = 44
-    const getSpin = function()
-    {
-        for (let i = 0; i < 45; i++)
-        {
-            ball[i] = (i + 1)
-        }
-        for (let i = 0; i < 6; i++)
-        {
-            idx = Math.floor(Math.random() * remainIdx)
-            numberText.innerText = ball[idx]
-            result.push(sectionSet[2].balls[idx])
-            ball.splice(idx, 1)
-            result.sort(function (a, b)
-            {
-                return a - b
-            })
-            remainIdx--
-        }
-    }
+
     const playIntroOpacity = function()
     {
         if (introOpacityValue < 1)
@@ -227,6 +239,7 @@
         introFadeOutTimer        = setInterval(playIntroOpacity, 20)
         introTransTimer          = setInterval(playIntroTranslate, 20)
     }
+
     const playScroll = function()
     {
         let opacityValue = 0
@@ -263,14 +276,41 @@
             break
         }
     }
+
+    const getSpin = function()
+    {
+        for (let i = 0; i < sectionSet[2].values.leftBall; i++)
+        {
+            sectionSet[2].values.ball[i] = (i + 1)
+        }
+
+        for (let k = 0; k < 6; k++)
+        {
+            sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballIdx)
+            sectionSet[2].values.wonBalls.push(sectionSet[2].values.wonIdx)
+            sectionSet[2].values.ball.splice(sectionSet[2].values.ball.indexOf(sectionSet[2].values.wonIdx), 1)
+
+            sectionSet[2].values.leftBall--
+        }
+
+        sectionSet[2].values.wonBalls.sort(function (a, b)
+        {
+            return a - b
+        })
+
+        return sectionSet[2].values.wonBalls
+
+    }
+
     const numberItem      = document.createElement('span')
     const numberText      = document.createElement('span')
+
     sectionSet[2].objects.generateElement3_button.addEventListener('click', () =>
     {
         sectionSet[2].objects.generateElement4_list.appendChild(numberItem)
         sectionSet[2].objects.generateElement4_list.appendChild(numberText)
-        sectionSet[2].objects.generateElement3_button.textContent = '정지'
-        getSpin()
+        // sectionSet[2].objects.generateElement3_button.textContent = '정지'
+        numberText.innerText = getSpin()
     })
     const scrollLoop = function()
     {
