@@ -87,11 +87,14 @@
                 generateElement4_OpacityOut    : [0, 1, {start: 0.25, end: 0.2}],
                 generateElement4_TranslateOut  : [0, -10, {start: 0.25, end: 0.2}],
 
-                ball            : [],
-                ballIdx         : 44,
-                wonBalls        : [],
-                wonIdx          : 0,
-                leftBall        : 45
+                //ball            : [],
+                //ballIdx         : 44,
+                //wonBalls        : [],
+                //wonIdx          : 0,
+                //leftBall        : 45
+
+                ball       : [],
+                ballCount  : 45
             }
         },
         {
@@ -279,18 +282,26 @@
 
     const getSpin = function()
     {
-        for (let i = 0; i < sectionSet[2].values.leftBall; i++)
+        for (let i = 0; i < sectionSet[2].values.ballCount; i++)
         {
-            sectionSet[2].values.ball[i] = (i + 1)
+            sectionSet[2].values.ball[i] = false
+            //sectionSet[2].values.ball[i] = (i + 1)
         }
 
         for (let k = 0; k < 6; k++)
         {
-            sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballIdx)
-            sectionSet[2].values.wonBalls.push(sectionSet[2].values.wonIdx)
-            sectionSet[2].values.ball.splice(sectionSet[2].values.ball.indexOf(sectionSet[2].values.wonIdx), 1)
+            while(sectionSet[2].values.ball[Math.floor(Math.random() * sectionSet[2].values.ballCount - 1)] == false)
+            {
+                sectionSet[2].values.ball
+            }
 
-            sectionSet[2].values.leftBall--
+            sectionSet[2].values.ballCount--
+
+            //sectionSet[2].values.ballIdx = Math.floor(Math.random() * sectionSet[2].values.ballIdx)
+            //sectionSet[2].values.wonBalls.push(sectionSet[2].values.wonIdx)
+            //sectionSet[2].values.ball.splice(sectionSet[2].values.ball.indexOf(sectionSet[2].values.wonIdx), 1)
+
+            //sectionSet[2].values.ballIdx--
         }
 
         sectionSet[2].values.wonBalls.sort(function (a, b)
