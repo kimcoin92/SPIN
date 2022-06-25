@@ -1,9 +1,5 @@
 (() =>
 {
-    // ##############################
-    //             기본
-    // ##############################
-
     // 윈도우의 가운데를 맞춘 y축 기준 높이
     let yOffset                     = 0
 
@@ -13,22 +9,25 @@
     // 현재 섹션의 위치 번호
     let currentSection              = 0
 
-
-
-    // ##############################
-    //     인트로 : 페이드 아웃
-    // ##############################
-
-    // 밝기 조절 인터벌 참조
+    // 인트로 밝기 조절 인터벌 참조
     let introFadeOutTimer           = null
 
-    // 위치 조절 인터벌 참조
+    // 인트로 위치 조절 인터벌 참조
     let introTransTimer             = null
 
+    // 인트로 이동 효과 시간
     let introTransLength            = 0
+
+    // 인트로 이동 좌표값 시점
     let introTranslateValue1        = 0
+    
+    // 인트로 이동 좌표값 종점
     let introTranslateValue2        = 0
+
+    // 인트로 밝기값
     let introOpacityValue           = 0
+
+    // 스크롤형 효과를 위한 섹션 분할
     let sectionSet = [
 
         // 인트로
@@ -40,8 +39,6 @@
                 container          : document.querySelector('#section-0'),
                 introElement1_text : document.querySelector('#section-0 #box1'),
                 introElement2_text : document.querySelector('#section-0 #box2'),
-
-                // 인트로의 페이드 아웃 효과 참조값을 공유
                 videoElement       : document.querySelector('.background-video')
             }
         },
@@ -88,10 +85,10 @@
                 generateElement4_TranslateOut  : [0, -10, {start: 0.25, end: 0.2}],
 
                 ball            : [],
-                ballIdx         : 44,
-                wonBalls        : [],
+                ballIdx         : 0,
+                wonBall         : [],
                 wonIdx          : 0,
-                leftBall        : 45
+                ballCount       : 45
             }
         },
         {
@@ -279,26 +276,31 @@
 
     const getSpin = function()
     {
-        for (let i = 0; i < sectionSet[2].values.leftBall; i++)
+        // 공의 개수만큼 반복하면서 공의 배열에 숫자값을 입력한다.
+        // 로또는 번호 45개 : 공도 (원래 45개이지만 무작위 수를 추첨할때 내림처리하여 하나가 부족하므로) 46개로 생성한다.
+        for (let i = 0; i < sectionSet[2].values.ballCount; i++)
         {
             sectionSet[2].values.ball[i] = (i + 1)
         }
 
         for (let k = 0; k < 6; k++)
         {
-            sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballIdx)
-            sectionSet[2].values.wonBalls.push(sectionSet[2].values.wonIdx)
-            sectionSet[2].values.ball.splice(sectionSet[2].values.ball.indexOf(sectionSet[2].values.wonIdx), 1)
+            sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballCount)
 
-            sectionSet[2].values.leftBall--
+            sectionSet[2].values.wonBall.push(sectionSet[2].values.ball[sectionSet[2].values.wonIdx])
+
+            // 무작위로 선택된 45개의 공의 배열에서 무작위로 선택된 45개의 공의 배열 index 안에 있는 숫자값과 일치하면 제외시킨다.
+            sectionSet[2].values.ball.splice(sectionSet[2].values.ball.indexOf(sectionSet[2].values.ball[sectionSet[2].values.wonIdx]), 1)
+
+            sectionSet[2].values.ballCount--
         }
 
-        sectionSet[2].values.wonBalls.sort(function (a, b)
+        sectionSet[2].values.wonBall.sort(function (a, b)
         {
             return a - b
         })
 
-        return sectionSet[2].values.wonBalls
+        return sectionSet[2].values.wonBall
 
     }
 
