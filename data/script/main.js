@@ -276,6 +276,32 @@
 
     const getSpin = function()
     {
+        for (let i = 0; i < sectionSet[2].values.ballCount; i++)
+        {
+            sectionSet[2].values.ball[i] = (i + 1)
+        }
+
+        let spinArr = [];
+
+        spinArr[0] = setInterval(spinEffect(), 50)
+
+        // 생성 버튼을 누르면 생성 버튼이 정지버튼으로 바뀐다.
+        // 첫번째 번호가 무작위로 반복적으로 섞인다.
+        // 정지 버튼을 누르면 첫번째 번호의 섞임이 멈추고 다음 번호가 섞인다.
+        // 다음 과정이 6번 적용되면 리스트에 완성된 번호가 저장된다.
+    }
+
+    
+
+    const spinEffect = function()
+    {
+        sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballCount)
+
+        numberText.innerText = sectionSet[2].values.wonIdx;
+    }
+
+    /* const getSpin = function()
+    {
         // 공의 개수만큼 반복하면서 공의 배열에 숫자값을 입력한다.
         // 로또는 번호 45개 : 공도 (원래 45개이지만 무작위 수를 추첨할때 내림처리하여 하나가 부족하므로) 46개로 생성한다.
 
@@ -303,7 +329,7 @@
 
         return sectionSet[2].values.wonBall
 
-    }
+    } */
 
     const numberItem      = document.createElement('span')
     const numberText      = document.createElement('span')
@@ -312,8 +338,8 @@
     {
         sectionSet[2].objects.generateElement4_list.appendChild(numberItem)
         sectionSet[2].objects.generateElement4_list.appendChild(numberText)
-        // sectionSet[2].objects.generateElement3_button.textContent = '정지'
-        numberText.innerText = getSpin()
+        sectionSet[2].objects.generateElement3_button.textContent = '정지'
+        getSpin()
     })
     const scrollLoop = function()
     {
