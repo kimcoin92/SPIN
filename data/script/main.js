@@ -274,6 +274,19 @@
         }
     }
 
+    // 무작위 번호 출력
+
+    // 1. 페이지에는 6개의 번호 슬롯이 있다.
+    // 2. 생성 버튼을 누르면 생성 버튼이 정지 버튼으로 바뀐다.
+    // 3. 1번 슬롯에 고속으로 무작위 숫자가 표시되도록 한다.
+    // 4. 정지 버튼을 누르면 숫자 표시가 중지되며 그 번호는 첫번째 추천 번호로 결정된다.
+    // 5. 2 ~ 6번 슬롯 또한 동일한 루틴으로 진행한다.
+    //    단, 중복되는 번호가 출력되지 않도록 사전에 배열 형태의 번호 리스트를 구현한다.
+    //    선택된 배열 위치의 번호를 각 번호 슬롯에 입력된 번호는 제외시킨다.
+    // 6. 모든 슬롯에 번호가 입력되면 생성 리스트로 번호들을 이동시킨다.
+    //    정지 버튼은 생성 버튼으로 바꾼다.
+
+    /*
     const getSpin = function()
     {
         for (let i = 0; i < sectionSet[2].values.ballCount; i++)
@@ -284,23 +297,20 @@
         let spinArr = [];
 
         spinArr[0] = setInterval(spinEffect(), 50)
-
-        // 생성 버튼을 누르면 생성 버튼이 정지버튼으로 바뀐다.
-        // 첫번째 번호가 무작위로 반복적으로 섞인다.
-        // 정지 버튼을 누르면 첫번째 번호의 섞임이 멈추고 다음 번호가 섞인다.
-        // 다음 과정이 6번 적용되면 리스트에 완성된 번호가 저장된다.
     }
+    */
 
     
-
+    /*
     const spinEffect = function()
     {
         sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballCount)
 
         numberText.innerText = sectionSet[2].values.wonIdx;
     }
+    */
 
-    /* const getSpin = function()
+    const getSpin = function()
     {
         // 공의 개수만큼 반복하면서 공의 배열에 숫자값을 입력한다.
         // 로또는 번호 45개 : 공도 (원래 45개이지만 무작위 수를 추첨할때 내림처리하여 하나가 부족하므로) 46개로 생성한다.
@@ -329,7 +339,7 @@
 
         return sectionSet[2].values.wonBall
 
-    } */
+    }
 
     const numberItem      = document.createElement('span')
     const numberText      = document.createElement('span')
@@ -338,8 +348,8 @@
     {
         sectionSet[2].objects.generateElement4_list.appendChild(numberItem)
         sectionSet[2].objects.generateElement4_list.appendChild(numberText)
-        sectionSet[2].objects.generateElement3_button.textContent = '정지'
-        getSpin()
+        // sectionSet[2].objects.generateElement3_button.textContent = '정지'
+        numberItem.textContent = getSpin()
     })
     const scrollLoop = function()
     {
