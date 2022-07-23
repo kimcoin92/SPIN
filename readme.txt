@@ -2,12 +2,15 @@
 - index.html : section-1
   로또 공식 api를 참조한 자동 번호조회 업데이트를 위해 수동 작성 중단
 
+<<<<<<< HEAD
 - index.html : section-2
   이전 생성번호 기록을 남기기 위한 리스트 생성
 
 - main.js : getSpin(), effectSpin(), stopSpin()
   번호 생성 기능 재조정 (Spinning 효과 1차 작업)
 
+=======
+>>>>>>> 80cefa79ff959c2337982ea5f4299f4d3d7e6ffc
 2022년 06월 18일
 - main.js : getSpin()
   번호 중복 & 0번 출력 문제 해결 중
