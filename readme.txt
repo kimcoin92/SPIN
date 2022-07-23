@@ -2,6 +2,9 @@
 - index.html : section-1
   로또 공식 api를 참조한 자동 번호조회 업데이트를 위해 수동 작성 중단
 
+- index.html : section-2
+  이전 생성번호 기록을 남기기 위한 리스트 생성
+
 2022년 06월 18일
 - main.js : getSpin()
   번호 중복 & 0번 출력 문제 해결 중
