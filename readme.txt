@@ -2,15 +2,16 @@
 - index.html : section-1
   로또 공식 api를 참조한 자동 번호조회 업데이트를 위해 수동 작성 중단
 
-<<<<<<< HEAD
 - index.html : section-2
   이전 생성번호 기록을 남기기 위한 리스트 생성
 
 - main.js : getSpin(), effectSpin(), stopSpin()
   번호 생성 기능 재조정 (Spinning 효과 1차 작업)
+- main.js Spinning 효과 문제점
+  Math.random 함수의 부족한 난수생성 능력으로 인해 도출된 결과의 중복성이 높은 상황
+  해결법 1 : 보안성을 높인 crpto형 난수생성 함수로 대체한다.
+  해결법 2 : 정지 버튼을 눌렀을 때, 슬롯으로 나눠 순차적인 번호 결과를 도출하고 중복성을 떨어뜨린다.
 
-=======
->>>>>>> 80cefa79ff959c2337982ea5f4299f4d3d7e6ffc
 2022년 06월 18일
 - main.js : getSpin()
   번호 중복 & 0번 출력 문제 해결 중
