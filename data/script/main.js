@@ -71,7 +71,8 @@
                 generateElement1_text   : document.querySelector('#section-2 #text1'),
                 generateElement2_text   : document.querySelector('#section-2 #text2'),
                 generateElement3_button : document.querySelector('#section-2 #button-Generate'),
-                generateElement4_list   : document.querySelector('#section-2 #number-List')
+                generateElement4_result : document.querySelector('#section-2 #number-Result'),
+                generateElement5_list   : document.querySelector('#section-2 #number-List'),
             },
             values:
             {
@@ -85,10 +86,10 @@
                 generateElement4_TranslateOut  : [0, -10, {start: 0.25, end: 0.2}],
 
                 ball            : [],
-                ballIdx         : 0,
                 wonBall         : [],
                 wonIdx          : 0,
-                ballCount       : 45
+                ballCount       : 45,
+                spinFlag        : false
             }
         },
         {
@@ -274,47 +275,67 @@
         }
     }
 
-    // 무작위 번호 출력
-
-    // 1. 페이지에는 6개의 번호 슬롯이 있다.
-    // 2. 생성 버튼을 누르면 생성 버튼이 정지 버튼으로 바뀐다.
-    // 3. 1번 슬롯에 고속으로 무작위 숫자가 표시되도록 한다.
-    // 4. 정지 버튼을 누르면 숫자 표시가 중지되며 그 번호는 첫번째 추천 번호로 결정된다.
-    // 5. 2 ~ 6번 슬롯 또한 동일한 루틴으로 진행한다.
-    //    단, 중복되는 번호가 출력되지 않도록 사전에 배열 형태의 번호 리스트를 구현한다.
-    //    선택된 배열 위치의 번호를 각 번호 슬롯에 입력된 번호는 제외시킨다.
-    // 6. 모든 슬롯에 번호가 입력되면 생성 리스트로 번호들을 이동시킨다.
-    //    정지 버튼은 생성 버튼으로 바꾼다.
-
-    /*
+    // 무작위 효과를 적용한 수정 버전
     const getSpin = function()
     {
+        sectionSet[2].values.spinFlag = true;
+        sectionSet[2].values.wonBall = new Array(6);
+
+        sectionSet[2].objects.generateElement3_button.textContent = '정지'
+
+        effSpinFlag = setInterval(effectSpin, 25);
+    }
+
+    // Interval 무작위 효과
+    const effectSpin = function()
+    {
+        sectionSet[2].values.ballCount = 45;
+        sectionSet[2].values.wonBall = [];
+
         for (let i = 0; i < sectionSet[2].values.ballCount; i++)
         {
             sectionSet[2].values.ball[i] = (i + 1)
-        }
+        };
 
-        let spinArr = [];
+        for (let i = 0; i < 6; i++)
+        {
+            sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballCount);
 
-        spinArr[0] = setInterval(spinEffect(), 50)
+            sectionSet[2].values.wonBall.push(sectionSet[2].values.ball[sectionSet[2].values.wonIdx]);
+
+            sectionSet[2].values.ball.splice(sectionSet[2].values.ball.indexOf(sectionSet[2].values.ball[sectionSet[2].values.wonIdx]), 1);
+
+            sectionSet[2].values.ballCount--;
+        };
+
+        sectionSet[2].values.wonBall.sort(function (a, b)
+        {
+            return a - b
+        });
+
+        numberResultText.textContent = sectionSet[2].values.wonBall;
     }
-    */
 
-    
-    /*
-    const spinEffect = function()
+    // 무작위 효과를 종료한다.
+    const stopSpin = function()
     {
-        sectionSet[2].values.wonIdx = Math.floor(Math.random() * sectionSet[2].values.ballCount)
+        clearInterval(effSpinFlag);
 
-        numberText.innerText = sectionSet[2].values.wonIdx;
+        sectionSet[2].objects.generateElement3_button.textContent = '생성'
+
+        sectionSet[2].values.spinFlag = false;
+
+        return sectionSet[2].values.wonBall;
     }
-    */
 
+    /*
+
+    // 번호 전체가 일괄적으로 출력되는 일반 버전
     const getSpin = function()
     {
-        // 공의 개수만큼 반복하면서 공의 배열에 숫자값을 입력한다.
-        // 로또는 번호 45개 : 공도 (원래 45개이지만 무작위 수를 추첨할때 내림처리하여 하나가 부족하므로) 46개로 생성한다.
+        let spinFlag = null;
 
+        // 45개의 공을 만든다
         for (let i = 0; i < sectionSet[2].values.ballCount; i++)
         {
             sectionSet[2].values.ball[i] = (i + 1)
@@ -337,19 +358,38 @@
             return a - b
         })
 
-        return sectionSet[2].values.wonBall
-
+        numberItem.textContent = sectionSet[2].values.wonBall
     }
 
-    const numberItem      = document.createElement('span')
-    const numberText      = document.createElement('span')
+    */
+
+    const numberResultItem      = document.createElement('div');
+    const numberResultText      = document.createElement('span');
 
     sectionSet[2].objects.generateElement3_button.addEventListener('click', () =>
     {
-        sectionSet[2].objects.generateElement4_list.appendChild(numberItem)
-        sectionSet[2].objects.generateElement4_list.appendChild(numberText)
-        // sectionSet[2].objects.generateElement3_button.textContent = '정지'
-        numberItem.textContent = getSpin()
+        let result = []
+
+        if (sectionSet[2].values.spinFlag == false)
+        {
+            getSpin();
+        }
+        else
+        {
+            result = stopSpin();
+        };
+
+        sectionSet[2].objects.generateElement4_result.appendChild(numberResultItem);
+        sectionSet[2].objects.generateElement4_result.appendChild(numberResultText);
+
+        const numberPrevItem        = document.createElement('div');
+        const numberPrevText        = document.createElement('span');
+
+        numberResultText.textContent = result;
+        numberPrevText.textContent = result;
+
+        sectionSet[2].objects.generateElement5_list.appendChild(numberPrevItem);
+        sectionSet[2].objects.generateElement5_list.appendChild(numberPrevText);
     })
     const scrollLoop = function()
     {
